@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="duyguTakipGoruntuModel"
+            type="com.sbaltinsoy.duygudurumtakip.duygutakip.DuyguTakipViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        tools:context = ".duygutakip.DuyguTakipFragment">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/baslat_buton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="@{duyguTakipGoruntuModel.baslaButonuGorunmesi}"
+            android:onClick="@{() -> duyguTakipGoruntuModel.duyguTakibiniBaslat()}"
+            android:text="@string/baslat"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="@dimen/g_margin"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bitir_buton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="@{duyguTakipGoruntuModel.bitisButonuGorunmesi}"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:onClick="@{() -> duyguTakipGoruntuModel.duyguTakibiniDurdur()}"
+            android:text="@string/bitir"
+            android:layout_margin="@dimen/g_margin"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/duygu_listesi"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/temizle_buton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bitir_buton"
+            />
+
+        <!--
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@id/baslat_buton"
+            app:layout_constraintBottom_toTopOf="@id/temizle_buton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="0dp">
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:text="@{duyguTakipGoruntuModel.duygularString}"
+                android:layout_height="wrap_content"/>
+        </androidx.core.widget.NestedScrollView>
+-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/temizle_buton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="@{duyguTakipGoruntuModel.temizleButonuGorunmesi}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="@dimen/g_margin"
+            android:text="@string/temizle"
+            android:onClick="@{() -> duyguTakipGoruntuModel.tumVeriyiSil()}"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+
